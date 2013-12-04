@@ -1,6 +1,6 @@
 QT += network
 QT -= gui
-TARGET = emukeysd
+TARGET = input-event-daemon
 *-g++*:QMAKE_CXXFLAGS += -std=c++0x
 
 SOURCES += \

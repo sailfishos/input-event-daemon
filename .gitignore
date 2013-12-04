@@ -13,6 +13,6 @@
 *.a
 
 *.user
-emukeysd
+input-event-daemon
 moc_*.cpp
 Makefile
