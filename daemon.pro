@@ -14,3 +14,7 @@ HEADERS += \
 
 target.path = /usr/bin
 INSTALLS += target
+
+systemd-service.path = /lib/systemd/system/
+systemd-service.files = input-event-daemon.service
+INSTALLS += systemd-service

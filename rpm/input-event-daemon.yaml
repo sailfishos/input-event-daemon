@@ -15,3 +15,4 @@ PkgConfigBR:
 
 Files:
 - "%{_bindir}/input-event-daemon"
+- /lib/systemd/system/input-event-daemon.service
