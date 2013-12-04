@@ -1,0 +1,19 @@
+Name: input-event-daemon
+Summary: Streams input events from network to uinput device
+Version: 0.0.0
+Release: 1
+Group: System/Packages
+License: LGPLv2
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description:
+The daemon streams e.g. keyboard events it receives from network connection to
+a uinput device. This allows emulation of hardware keys in the emulator. 
+URL: https://github.com/jhakonen/input-event-daemon
+Builder: qmake5
+PkgConfigBR:
+- Qt5Core
+- Qt5Network
+
+Files:
+- "%{_bindir}/input-event-daemon"
