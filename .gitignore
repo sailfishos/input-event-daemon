@@ -16,3 +16,6 @@
 input-event-daemon
 moc_*.cpp
 Makefile
+*.rpm
+*.list
+*.spec
