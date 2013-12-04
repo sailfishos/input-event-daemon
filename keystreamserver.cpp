@@ -5,6 +5,7 @@
 #include <QMap>
 #include <QDataStream>
 #include <QStringList>
+#include <functional>
 
 namespace {
 
@@ -105,7 +106,9 @@ KeyStreamServer::KeyStreamServer(QObject *parent)
     Q_D(KeyStreamServer);
     d->tcpServer = new QTcpServer(this);
 
-    connect(d->tcpServer, &QTcpServer::newConnection, std::bind(&Pimpl::onNewConnection, d));
+    connect(d->tcpServer, &QTcpServer::newConnection, [d]() {
+        d->onNewConnection();
+    });
 }
 
 KeyStreamServer::~KeyStreamServer() {
