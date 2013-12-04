@@ -18,4 +18,3 @@ moc_*.cpp
 Makefile
 *.rpm
 *.list
-*.spec
