@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     }
 
     InputDevice dev;
-    if (!dev.create("emulated-hardware-keys")) {
+    if (!dev.create("event-input-daemon")) {
         qCritical() << "Failed to create input device";
         return -1;
     }
