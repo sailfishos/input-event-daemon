@@ -11,3 +11,6 @@ SOURCES += \
 HEADERS += \
     keystreamserver.h \
     inputdevice.h
+
+target.path = /usr/bin
+INSTALLS += target

@@ -6,9 +6,7 @@ Group: System/Packages
 License: LGPLv2
 Sources:
 - '%{name}-%{version}.tar.bz2'
-Description:
-The daemon streams e.g. keyboard events it receives from network connection to
-a uinput device. This allows emulation of hardware keys in the emulator. 
+Description: The daemon streams e.g. keyboard events it receives from network connection to a uinput device. This allows emulation of hardware keys in the emulator. 
 URL: https://github.com/jhakonen/input-event-daemon
 Builder: qmake5
 PkgConfigBR:
