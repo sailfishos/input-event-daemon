@@ -12,7 +12,10 @@ Builder: qmake5
 PkgConfigBR:
 - Qt5Core
 - Qt5Network
+Requires:
+- systemd
 
 Files:
 - "%{_bindir}/input-event-daemon"
-- /lib/systemd/system/input-event-daemon.service
+- "%{_unitdir}/input-event-daemon.service"
+- "%{_unitdir}/multi-user.target.wants/input-event-daemon.service"

@@ -6,4 +6,4 @@ ExecStart=/usr/bin/input-event-daemon
 Restart=always
 
 [Install]
-WantedBy=mce.service lipstick.service
+WantedBy=multi-user.target

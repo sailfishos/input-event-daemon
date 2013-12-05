@@ -17,9 +17,6 @@ URL:        https://github.com/jhakonen/input-event-daemon
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  input-event-daemon.yaml
 Requires:   systemd
-Requires(preun): systemd
-Requires(post): systemd
-Requires(postun): systemd
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Network)
 
@@ -50,23 +47,32 @@ rm -rf %{buildroot}
 %qmake5_install
 
 # >> install post
+mkdir -p %{buildroot}%{_unitdir}/multi-user.target.wants
+ln -sf ../input-event-daemon.service %{buildroot}%{_unitdir}/multi-user.target.wants/
 # << install post
 
 %preun
+# >> preun
 if [ "$1" -eq 0 ]; then
 systemctl stop input-event-daemon.service
 fi
+# << preun
 
 %post
+# >> post
 systemctl daemon-reload
 systemctl reload-or-try-restart input-event-daemon.service
+# << post
 
 %postun
+# >> postun
 systemctl daemon-reload
+# << postun
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}/input-event-daemon
-/lib/systemd/system/input-event-daemon.service
+%{_unitdir}/input-event-daemon.service
+%{_unitdir}/multi-user.target.wants/input-event-daemon.service
 # >> files
 # << files
