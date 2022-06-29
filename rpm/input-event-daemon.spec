@@ -5,11 +5,12 @@ Version:    0.0.0
 Release:    1
 Group:      System/Packages
 License:    LGPLv2
-URL:        https://github.com/jhakonen/input-event-daemon
+URL:        https://github.com/sailfishos/input-event-daemon
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   systemd
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Network)
+BuildRequires:  pkgconfig(systemd)
 
 %description
 The daemon streams e.g. keyboard events it receives from network connection to a uinput device. This allows emulation of hardware keys in the emulator.
@@ -19,10 +20,9 @@ The daemon streams e.g. keyboard events it receives from network connection to a
 
 %build
 %qmake5 
-make %{?_smp_mflags}
+%make_build
 
 %install
-rm -rf %{buildroot}
 %qmake5_install
 
 mkdir -p %{buildroot}%{_unitdir}/multi-user.target.wants
@@ -30,15 +30,15 @@ ln -sf ../input-event-daemon.service %{buildroot}%{_unitdir}/multi-user.target.w
 
 %preun
 if [ "$1" -eq 0 ]; then
-systemctl stop input-event-daemon.service
+systemctl stop input-event-daemon.service || :
 fi
 
 %post
-systemctl daemon-reload
-systemctl reload-or-try-restart input-event-daemon.service
+systemctl daemon-reload || :
+systemctl reload-or-try-restart input-event-daemon.service || :
 
 %postun
-systemctl daemon-reload
+systemctl daemon-reload || :
 
 %files
 %defattr(-,root,root,-)
